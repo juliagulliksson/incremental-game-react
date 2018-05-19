@@ -1,8 +1,29 @@
-import React from 'react';
-import Avocado from './../images/avocado.png';
+import React, { Component } from 'react';
+import AvocadoImage from './../images/avocado.png';
 
-export default function AvocadoImage(props){
-  return (
-    <img src={Avocado} alt="Avocado" onClick={props.handleClick} />
-  )
+
+export default class Avocado extends Component {
+
+  state = {
+    active: false
+  }
+
+  toggleClass = (bool) => {
+    this.setState({active: bool})
+  }
+
+  render(){
+    return (
+      <div className="col-4 avocado-image-wrapper">
+        <img  src={AvocadoImage} alt="Avocado"
+              className={this.state.active ? 'active': null}  
+              onClick={ this.props.handleClick } 
+              onMouseDown={ () => this.toggleClass(true) } 
+              onMouseUp={() => this.toggleClass(false)} />
+        <div className="counter">
+          <p>{ this.props.counter } </p>
+        </div>
+      </div>
+    )
+  }
 }

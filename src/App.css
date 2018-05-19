@@ -1,6 +1,13 @@
 .avocado-image-wrapper img{
   width: 100%;
   cursor: pointer;
+  transition: width 50ms ease-in-out;
+}
+
+.avocado-image-wrapper img.active {
+  width: 98%;
+  margin:0px auto;
+  display: block;
 }
 
 .counter{

@@ -11,7 +11,7 @@ export default class Counter extends Component {
     autoClickerUpgrade: false,
     amountOfAutoClickers: 0,
     autoClickerCost: 10,
-    doubleClickCount: 1,
+    doubleClickCount: 0,
     amountOfDoubleClickers: 0,
     doubleClickerCost: 10,
     autoClickerfps: 10000,
@@ -35,7 +35,12 @@ export default class Counter extends Component {
 
   incrementCounter = () => {
     console.log(this.state.fps)
-    this.setState({ counter: this.state.counter + this.state.doubleClickCount });
+    if(this.state.doubleClickCount > 0){
+      this.setState({ counter: this.state.counter + this.state.doubleClickCount });
+    } else {
+      this.setState({ counter: this.state.counter + 1 });
+    }
+ 
    
     if(this.state.counter >= 9){
       this.setState({
@@ -120,12 +125,10 @@ export default class Counter extends Component {
         
           <div className="container">
           <div className="row">
-              <div className="col-4 avocado-image-wrapper">
-                <Avocado handleClick={ this.incrementCounter } />
-                <div className="counter">
-                  <p>{ this.state.counter } </p>
-                </div>
-              </div>
+              
+                <Avocado handleClick={ this.incrementCounter } counter={this.state.counter} />
+                
+             
             
               <div className="col-8">
                 
