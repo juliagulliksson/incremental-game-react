@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Counter from './Counter';
 
 class Content extends Component {
   render() {
@@ -12,4 +13,4 @@ class Content extends Component {
   }
 }
 
-export default App;
+export default Content;
