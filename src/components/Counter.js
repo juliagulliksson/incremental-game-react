@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 //import Upgrade from './Upgrade';
 import Avocado from './Avocado';
+import AutoClicker from './AutoClicker';
 
 export default class Counter extends Component {
 
   state = {
     counter: 0,
-    incrementCounterUpgrade: false,
-    amountOfAutoClickers: 0
+    autoClickerUpgrade: false,
+    amountOfAutoClickers: 0,
+    clickerCount: 1
   }
 
   incrementCounter = () => {
-    this.setState({ counter: this.state.counter + 1 });
+    this.setState({ counter: this.state.counter + this.state.clickerCount });
+    
+    if(this.state.counter >= 9){
+      this.setState({
+        autoClickerUpgrade: true,
+      });
+    } else {
+      this.setState({
+        autoClickerUpgrade: false,
+      });
+    }
    
     this.checkCounter();
   }
@@ -27,19 +39,32 @@ export default class Counter extends Component {
     if(this.state.counter >= 9){
       this.setState({
         counter: this.state.counter - 10,
-        incrementCounterUpgrade: true,
+        autoClickerUpgrade: true,
         amountOfAutoClickers: this.state.amountOfAutoClickers + 1
       });
     }
   }
-  
+
+  buyDoubleClicker = () => {
+    this.setState({
+      clickerCount: this.state.clickerCount * 2
+    });
+  }  
   render(){
 
-    if(this.state.incrementCounterUpgrade){
+
+    let autoClickerClass = "";
+    if(this.state.autoClickerUpgrade){
+      autoClickerClass = "upgradeable";
+    } else {
+      autoClickerClass = "non-upgradeable";
+    }
+
+   /*  if(this.state.autoClickerUpgrade){
       setTimeout(() => {
         this.setState({counter: this.state.counter + 1})
       }, 1000);
-    }
+    } */
     
     return(
         <div>
@@ -53,9 +78,10 @@ export default class Counter extends Component {
           <div className="counter">
           <p>{ this.state.counter } </p>
           </div>
-          
-        {/*   <Upgrade handleClick={this.buyAutoClicker} 
-          amount={this.state.amountOfAutoClickers} /> */}
+          <AutoClicker className={autoClickerClass} Cost="10" 
+          Amount={this.state.amountOfAutoClickers} handleClick={this.buyAutoClicker}/>
+
+          <button onClick= {this.buyDoubleClicker}>Buy Double clicker</button>
 
           {/* <iframe id="guac" width="560" height="315" title="guacamole-song" 
           src="https://www.youtube.com/embed/JNsKvZo6MDs?start=10" frameBorder="0" 

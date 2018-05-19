@@ -10,3 +10,13 @@
 .counter{
   text-align: center;
 }
+
+.upgradeable{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.non-upgradeable{
+  pointer-events: none;
+  opacity: 0.5;
+}
