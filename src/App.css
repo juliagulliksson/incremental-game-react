@@ -1,5 +1,5 @@
 .avocado-image-wrapper{
-  margin: 0px auto;
+  /*margin: 0px auto;*/
 }
 
 .avocado-image-wrapper img{
@@ -19,4 +19,17 @@
 .non-upgradeable{
   pointer-events: none;
   opacity: 0.5;
+}
+
+.upgrade-icon img{
+  width: 100%;
+}
+
+.upgrade-icon{
+  width: 150px;
+}
+
+main {
+  width: 70%;
+  margin: 0px auto;
 }
