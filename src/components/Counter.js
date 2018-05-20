@@ -42,7 +42,7 @@ export default class Counter extends Component {
     }
  
    
-    if(this.state.counter >= 9){
+    if(this.state.counter >= this.state.autoClickerCost - 1){
       this.setState({
         autoClickerUpgrade: true,
       });
@@ -105,14 +105,13 @@ export default class Counter extends Component {
   }
 
   render(){
-
-
-    let autoClickerClass = "";
+   
+    /* let autoClickerClass = "";
     if(this.state.autoClickerUpgrade){
       autoClickerClass = "upgradeable";
     } else {
       autoClickerClass = "non-upgradeable";
-    }
+    } */
 
    /*  if(this.state.autoClickerUpgrade){
       setTimeout(() => {
@@ -121,18 +120,17 @@ export default class Counter extends Component {
     } */
     
     return(
-        <div>
-        
           <div className="container">
-          <div className="row">
+            <div className="row">
               
-                <Avocado handleClick={ this.incrementCounter } counter={this.state.counter} />
+              <Avocado  handleClick={ this.incrementCounter } 
+                        counter={this.state.counter} />
                 
              
             
               <div className="col-8">
-                
-                <AvocadoTree  className={ autoClickerClass } 
+              
+                <AvocadoTree  available={ this.state.autoClickerUpgrade } 
                               Cost={ this.state.autoClickerCost } 
                               Amount={ this.state.amountOfAutoClickers } 
                               handleClick={ this.buyAvocadoTree }/>
@@ -144,11 +142,11 @@ export default class Counter extends Component {
                 <button onClick={this.buyAvocadoFarm}>Buy Avocado farm</button>
                 <button onClick={this.buyGMOfactory}>Buy GMO Factory</button>
               </div>
+
             </div>
-        </div>
+          </div>
       
           
-        </div>
     )
   }
 }
