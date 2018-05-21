@@ -9,6 +9,7 @@ export default class Counter extends Component {
   state = {
     counter: 0,
     autoClickerUpgrade: false,
+    doubleClickerUpgrade: false,
     amountOfAutoClickers: 0,
     autoClickerCost: 10,
     doubleClickCount: 0,
@@ -24,6 +25,8 @@ export default class Counter extends Component {
     setInterval(this.autoClicker, this.state.autoClickerfps);
     setInterval(this.incrementclicker, this.state.fps);
   }
+
+ 
 
   autoClicker = () => {
     this.setState({counter: this.state.counter + this.state.autoClickerInterval})
@@ -42,6 +45,16 @@ export default class Counter extends Component {
     }
  
    
+     if(this.state.counter >= this.state.doubleClickerCost - 1){
+      this.setState({
+        doubleClickerUpgrade: true,
+      });
+    } else {
+      this.setState({
+        doubleClickerUpgrade: false,
+      });
+    } 
+
     if(this.state.counter >= this.state.autoClickerCost - 1){
       this.setState({
         autoClickerUpgrade: true,
@@ -50,14 +63,16 @@ export default class Counter extends Component {
       this.setState({
         autoClickerUpgrade: false,
       });
-    }
+    } 
+    
    
     this.checkCounter();
   }
 
   checkCounter = () => {
-    console.log(this.state.counter)
-    console.log(this.state.doubleClickCount)
+   /*  console.log(this.state.counter)
+    console.log(this.state.doubleClickCount) */
+    console.log(this.state.autoClickerUpgrade)
   }
 
   buyAvocadoTree = () => {
@@ -65,7 +80,7 @@ export default class Counter extends Component {
       this.setState({
         counter: this.state.counter - this.state.autoClickerCost,
         amountOfAutoClickers: this.state.amountOfAutoClickers + 1,
-        autoClickerCost: this.state.autoClickerCost * 2,
+        autoClickerCost: Math.floor(this.state.autoClickerCost * 1.5),
         autoClickerInterval: this.state.autoClickerInterval + 1
       });
     }
@@ -76,11 +91,10 @@ export default class Counter extends Component {
       this.setState({
         counter: this.state.counter - this.state.doubleClickerCost,
         doubleClickCount: this.state.doubleClickCount + 2,
-        doubleClickerCost: this.state.doubleClickerCost * 2,
+        doubleClickerCost: Math.floor(this.state.doubleClickerCost * 1.5),
         amountOfDoubleClickers: this.state.amountOfDoubleClickers + 1
       });
     }
-
   } 
   
   buyAvocadoFarmer = () => {
@@ -118,25 +132,24 @@ export default class Counter extends Component {
         this.setState({counter: this.state.counter + 1})
       }, 1000);
     } */
-    
     return(
           <div className="container">
             <div className="row">
               
               <Avocado  handleClick={ this.incrementCounter } 
                         counter={this.state.counter} />
-                
-             
             
               <div className="col-8">
               
-                <AvocadoTree  available={ this.state.autoClickerUpgrade } 
+                <AvocadoTree  class={ this.state.autoClickerUpgrade ? 'upgradeable': 'non-upgradeable' } 
                               Cost={ this.state.autoClickerCost } 
                               Amount={ this.state.amountOfAutoClickers } 
-                              handleClick={ this.buyAvocadoTree }/>
+                              handleClick={ this.buyAvocadoTree }
+                              counter={this.state.counter}/>
                 <DoubleClicker  Cost={ this.state.doubleClickerCost } 
                                 handleClick={ this.buyDoubleClicker } 
-                                Amount={ this.state.amountOfDoubleClickers }/>
+                                Amount={ this.state.amountOfDoubleClickers }
+                                class={this.state.doubleClickerUpgrade ? 'upgradeable': 'non-upgradeable'}/>
 
                 <button onClick={this.buyAvocadoFarmer}>Buy Avocado farmer</button>
                 <button onClick={this.buyAvocadoFarm}>Buy Avocado farm</button>

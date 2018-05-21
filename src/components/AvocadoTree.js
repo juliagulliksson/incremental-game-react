@@ -21,49 +21,47 @@ export default function AutoClicker ({ className, Amount, Cost, handleClick }) {
 export default class AvocadoTree extends Component{
 
   state = {
-    clickable: false,
-    amount: 0,
-    classNames: 'non-upgradeable btn btn-primary'
+    amountOwned: 0,
+    cost: 10,
+    classes: 'non-upgradeable btn btn-primary'
+  }
+
+  componentDidMount(){
+    if(this.props.counter >= this.state.cost){
+      this.setState({classes: 'upgradeable btn btn-primary'})
+    } else {
+      this.setState((prevState) => {classes: prevState.classes})
+    }
   }
 
   addTree = () => {
     this.setState({
-      amount: this.state.amount + 1
+      amountOwned: this.state.amountOwned + 1
     })
   }
 
-  toggleClass = (bool) => {
-    if(bool){
-      this.setState({classNames: 'upgradeable btn btn-primary' })
+ /*  handleClick = () => {
+     if(this.props.counter >= this.state.cost){
+      this.setState({classes: 'upgradeable btn btn-primary'})
     } else {
-      this.setState(prevState => ({
-        classNames: prevState.classNames
-      }));
-    }
-  }
-
-
+      this.setState((prevState) => {classes: prevState.classes})
+    } 
+  } */
 
   render(){
 
-  /*   let toggleClickable = this.props.Clickable
-
-    let clickableClass = this.state.clickable ? 'upgradeable': 'non-upgradeable';
-    let classes = 'btn btn-primary';
-    classes = classes + clickableClass; */
-
-
+    const classes = `${this.props.class} btn btn-primary`;
     return (
       <div className="upgrade">
         <p>A tree that produces 1 avocado per 10 seconds</p>
         <div className="upgrade-icon">
           <img src={TreeImage} />
         </div>
-        <button className={this.props.available ? 'upgradeable': 'non-upgradeable'} onClick={() => {
+        <button className={classes} onClick={() => {
           this.props.handleClick();
           this.addTree();
           }}>Buy avocado tree</button>
-        <p>Cost: {this.props.Cost}</p>
+        <p>Cost: {this.state.cost}</p>
         <p>You own {this.state.amount} avocado trees, producing  avocados per second</p>
       </div>
     )
