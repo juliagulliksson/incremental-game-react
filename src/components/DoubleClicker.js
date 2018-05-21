@@ -15,7 +15,7 @@ export default class DoubleClicker extends Component {
 
   render(){
 
-    const classes = `${this.props.class} btn btn-primary`;
+    const classes = `${this.props.Class} btn btn-primary`;
     return (
       <div className="double-clicker">
         <p>Generate twice the amount of clicks!</p>

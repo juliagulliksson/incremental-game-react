@@ -8,44 +8,31 @@ export default class Counter extends Component {
 
   state = {
     counter: 0,
-    autoClickerUpgrade: false,
+    treeUpgrade: false,
     doubleClickerUpgrade: false,
-    amountOfAutoClickers: 0,
-    autoClickerCost: 10,
+    treeCost: 10,
     doubleClickCount: 0,
-    amountOfDoubleClickers: 0,
     doubleClickerCost: 10,
     autoClickerfps: 10000,
-    fps: 1000,
-    autoClickerInterval: 0,
-    incrementClickerInterval: 0
+    fps: 100,
+    autoClickerInterval: 1,
+    incrementClickerInterval: 0,
+    amountOfTrees: 0
   } 
 
   componentDidMount() {
-    setInterval(this.autoClicker, this.state.autoClickerfps);
+    //setInterval(this.autoClicker, this.state.autoClickerfps);
     setInterval(this.incrementclicker, this.state.fps);
+
+    /* setInterval(() => {
+      this.autoClicker();
+      //this.checkClasses();
+    }, this.state.autoClickerfps); */
+    
   }
 
- 
-
-  autoClicker = () => {
-    this.setState({counter: this.state.counter + this.state.autoClickerInterval})
-  }
-
-  incrementclicker = () => {
-    this.setState({counter: this.state.counter + this.state.incrementClickerInterval})
-  }
-
-  incrementCounter = () => {
-    console.log(this.state.fps)
-    if(this.state.doubleClickCount > 0){
-      this.setState({ counter: this.state.counter + this.state.doubleClickCount });
-    } else {
-      this.setState({ counter: this.state.counter + 1 });
-    }
- 
-   
-     if(this.state.counter >= this.state.doubleClickerCost - 1){
+  checkClasses = () => {
+    if(this.state.counter >= this.state.doubleClickerCost - 1){
       this.setState({
         doubleClickerUpgrade: true,
       });
@@ -55,33 +42,50 @@ export default class Counter extends Component {
       });
     } 
 
-    if(this.state.counter >= this.state.autoClickerCost - 1){
+    if(this.state.counter >= this.state.treeCost - 1){
       this.setState({
-        autoClickerUpgrade: true,
+        treeUpgrade: true,
       });
     } else {
       this.setState({
-        autoClickerUpgrade: false,
+        treeUpgrade: false,
       });
     } 
-    
-   
-    this.checkCounter();
+  }
+
+  autoClicker = () => {
+    this.setState({counter: this.state.counter + this.state.autoClickerInterval})
+  }
+
+  incrementclicker = () => {
+    //this.setState({counter: this.state.counter + this.state.incrementClickerInterval});
+    this.setState({
+      counter: this.state.counter +
+      (this.state.autoClickerInterval * this.state.amountOfTrees * (this.state.fps/10000)) 
+    })
+  }
+
+  incrementCounter = () => {
+    if(this.state.doubleClickCount > 0){
+      this.setState({ counter: this.state.counter + this.state.doubleClickCount });
+    } else {
+      this.setState({ counter: this.state.counter + 1 });
+    }
+    this.checkClasses();
+    //this.checkCounter();
   }
 
   checkCounter = () => {
-   /*  console.log(this.state.counter)
-    console.log(this.state.doubleClickCount) */
-    console.log(this.state.autoClickerUpgrade)
+    console.log(this.state.treeUpgrade, this.state.doubleClickerUpgrade)
   }
 
   buyAvocadoTree = () => {
-    if(this.state.counter >= this.state.autoClickerCost){
+    if(this.state.counter >= this.state.treeCost){
       this.setState({
-        counter: this.state.counter - this.state.autoClickerCost,
-        amountOfAutoClickers: this.state.amountOfAutoClickers + 1,
-        autoClickerCost: Math.floor(this.state.autoClickerCost * 1.5),
-        autoClickerInterval: this.state.autoClickerInterval + 1
+        counter: this.state.counter - this.state.treeCost,
+        treeCost: Math.floor(this.state.treeCost * 1.5),
+        //autoClickerInterval: this.state.autoClickerInterval + 1,
+        amountOfTrees: this.state.amountOfTrees + 1
       });
     }
   }
@@ -91,13 +95,12 @@ export default class Counter extends Component {
       this.setState({
         counter: this.state.counter - this.state.doubleClickerCost,
         doubleClickCount: this.state.doubleClickCount + 2,
-        doubleClickerCost: Math.floor(this.state.doubleClickerCost * 1.5),
-        amountOfDoubleClickers: this.state.amountOfDoubleClickers + 1
+        doubleClickerCost: Math.floor(this.state.doubleClickerCost * 1.5)
       });
     }
-  } 
+  }
   
-  buyAvocadoFarmer = () => {
+ /*  buyAvocadoFarmer = () => {
     this.setState({
       counter: this.state.counter - 40,
       incrementClickerInterval: this.state.incrementClickerInterval + 1
@@ -116,22 +119,10 @@ export default class Counter extends Component {
       counter: this.state.counter - 40,
       incrementClickerInterval: this.state.incrementClickerInterval + 40
     });
-  }
+  } */
 
   render(){
-   
-    /* let autoClickerClass = "";
-    if(this.state.autoClickerUpgrade){
-      autoClickerClass = "upgradeable";
-    } else {
-      autoClickerClass = "non-upgradeable";
-    } */
 
-   /*  if(this.state.autoClickerUpgrade){
-      setTimeout(() => {
-        this.setState({counter: this.state.counter + 1})
-      }, 1000);
-    } */
     return(
           <div className="container">
             <div className="row">
@@ -141,25 +132,21 @@ export default class Counter extends Component {
             
               <div className="col-8">
               
-                <AvocadoTree  class={ this.state.autoClickerUpgrade ? 'upgradeable': 'non-upgradeable' } 
-                              Cost={ this.state.autoClickerCost } 
-                              Amount={ this.state.amountOfAutoClickers } 
+                <AvocadoTree  Class={ this.state.treeUpgrade ? 'upgradeable': 'non-upgradeable' } 
+                              Cost={ this.state.treeCost } 
                               handleClick={ this.buyAvocadoTree }
-                              counter={this.state.counter}/>
+                              Counter= {this.state.counter}/>
                 <DoubleClicker  Cost={ this.state.doubleClickerCost } 
-                                handleClick={ this.buyDoubleClicker } 
-                                Amount={ this.state.amountOfDoubleClickers }
-                                class={this.state.doubleClickerUpgrade ? 'upgradeable': 'non-upgradeable'}/>
+                                handleClick={ this.buyDoubleClicker }
+                                Class={this.state.doubleClickerUpgrade ? 'upgradeable': 'non-upgradeable'}/>
 
-                <button onClick={this.buyAvocadoFarmer}>Buy Avocado farmer</button>
+               {/*  <button onClick={this.buyAvocadoFarmer}>Buy Avocado farmer</button>
                 <button onClick={this.buyAvocadoFarm}>Buy Avocado farm</button>
-                <button onClick={this.buyGMOfactory}>Buy GMO Factory</button>
+                <button onClick={this.buyGMOfactory}>Buy GMO Factory</button> */}
               </div>
 
             </div>
-          </div>
-      
-          
+          </div>      
     )
   }
 }
