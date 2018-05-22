@@ -72,13 +72,13 @@ export default class Counter extends Component {
   }
 
   incrementCounter = () => {
-    if(this.state.doubleClickCount > 0){
+    if (this.state.doubleClickCount > 0){
       this.setState({ counter: this.state.counter + this.state.doubleClickCount });
     } else {
       this.setState({ counter: this.state.counter + 1 });
     }
   }
-
+ 
   checkCounter = () => {
     console.log(this.state.treeUpgrade, this.state.doubleClickerUpgrade)
   }

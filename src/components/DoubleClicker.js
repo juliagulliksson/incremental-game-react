@@ -1,10 +1,10 @@
 import React from 'react';
 import Cursor from './../images/cursor.png';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
 export default function DoubleClicker({ Class, Cost, Amount, handleClick }) {
 
-  //const classes = Class ? 'upgradeable btn btn-primary': 'non-upgradeable btn btn-primary';
   return (
     <div className="double-clicker">
       <p>Generate twice the amount of clicks!</p>
@@ -12,10 +12,16 @@ export default function DoubleClicker({ Class, Cost, Amount, handleClick }) {
         <img src={Cursor} alt="Cursor"/>
       </div>  
       <Button className = { Class ? 'upgradeable': 'non-upgradeable' } 
-              onClick = { handleClick} >Buy double clicker</Button>
+              handleClick = { handleClick} >Buy double clicker</Button>
       <p>Cost: { Cost }</p>
       <p>You own { Amount } doubleclickers</p>
     </div>
   )
 }
 
+DoubleClicker.propTypes = {
+  Class: PropTypes.bool.isRequired,
+  Cost: PropTypes.number.isRequired,
+  Amount: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired
+}
