@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 //import Upgrade from './Upgrade';
 import Avocado from './Avocado';
-import AvocadoTree from './Tree';
-import DoubleClicker from './DoubleClicker';
+import AvocadoTree from './upgrades/Tree';
+import DoubleClicker from './upgrades/DoubleClicker';
+import AvocadoFarmer from './upgrades/Farmer';
 
 export default class Counter extends Component {
 
@@ -10,9 +11,11 @@ export default class Counter extends Component {
     counter: 0,
     treeUpgrade: false,
     doubleClickerUpgrade: false,
+    farmerUpgrade: false,
     treeCost: 10,
-    doubleClickCount: 0,
+    farmerCost: 15,
     doubleClickerCost: 10,
+    doubleClickCount: 0,
     fps: 100,
     autoClickerInterval: 1,
     incrementClickerInterval: 0,
@@ -39,22 +42,31 @@ export default class Counter extends Component {
   checkClasses = () => {
     if(this.state.counter >= this.state.doubleClickerCost){
       this.setState({
-        doubleClickerUpgrade: true,
+        doubleClickerUpgrade: true
       });
     } else {
       this.setState({
-        doubleClickerUpgrade: false,
+        doubleClickerUpgrade: false
       });
     } 
     if(this.state.counter >= this.state.treeCost){
       this.setState({
-        treeUpgrade: true,
+        treeUpgrade: true
       });
     } else {
       this.setState({
-        treeUpgrade: false,
+        treeUpgrade: false
       });
     } 
+    if(this.state.counter >= this.state.farmerCost){
+      this.setState({
+        farmerUpgrade: true
+      })
+    } else {
+      this.setState({
+        farmerUpgrade: false
+      })
+    }
   }
 
   incrementClicker = () => {
@@ -104,12 +116,14 @@ export default class Counter extends Component {
     }
   }
   
- /*  buyAvocadoFarmer = () => {
+   buyAvocadoFarmer = () => {
     this.setState({
-      counter: this.state.counter - 40,
-      incrementClickerInterval: this.state.incrementClickerInterval + 1
+      counter: this.state.counter - this.state.farmerCost,
+      farmerCost: Math.floor(this.state.farmerCost * 1.5),
+      amountOfFarmers: this.state.amountOfFarmers + 1
     });
   }
+  /*
 
   buyAvocadoFarm = () => {
     this.setState({
@@ -141,17 +155,21 @@ export default class Counter extends Component {
                             handleClick = { this.buyAvocadoTree }
                             Amount = { this.state.amountOfTrees}
                             />
-              <DoubleClicker  Cost={ this.state.doubleClickerCost } 
-                              handleClick={ this.buyDoubleClicker }
-                              Class={this.state.doubleClickerUpgrade}
+              <DoubleClicker  Cost = { this.state.doubleClickerCost } 
+                              handleClick = { this.buyDoubleClicker }
+                              Class = {this.state.doubleClickerUpgrade}
                               Amount = {this.state.amountOfDoubleClickers}
                               />
+
+              <AvocadoFarmer  Cost = {this.state.farmerCost}
+                              handleClick = {this.buyAvocadoFarmer}
+                              Class = {this.state.farmerUpgrade}
+                              Amount = {this.state.amountOfFarmers} />
 
               {/*  <button onClick={this.buyAvocadoFarmer}>Buy Avocado farmer</button>
               <button onClick={this.buyAvocadoFarm}>Buy Avocado farm</button>
               <button onClick={this.buyGMOfactory}>Buy GMO Factory</button> */}
             </div>
-
           </div>
         </div>      
     )
