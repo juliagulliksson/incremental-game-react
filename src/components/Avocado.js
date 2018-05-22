@@ -21,7 +21,7 @@ export default class Avocado extends Component {
               onMouseDown={ () => this.toggleClass(true) } 
               onMouseUp={() => this.toggleClass(false)} />
         <div className="counter">
-          <p>{ parseInt(this.props.counter) } </p>
+          <p>{ parseInt(this.props.counter, 10) } </p>
         </div>
       </div>
     )
