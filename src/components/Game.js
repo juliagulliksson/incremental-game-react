@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Avocado from './Avocado';
-import Upgrade from './upgrades/Upgrade';
-import UpgradeCountainer from './UpgradeCountainer';
+import Upgrade from './upgrade/Upgrade';
+import UpgradeCountainer from './upgrade/UpgradeCountainer';
 import SpaceImage from './../images/space_factory.jpg';
 import GMOImage from './../images/GMOFactory.jpg';
 import FactoryImage from './../images/factory.png';
 import FarmerImage from './../images/farmer.png';
 import TreeImage from './../images/avocadotree.png';
 
-export default class Counter extends Component {
+export default class Game extends Component {
 
   state = {
     counter: 0,

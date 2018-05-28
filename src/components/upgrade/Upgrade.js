@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './../Button';
-import UpgradeImage from './../UpgradeImage';
+import Button from './../elements/Button';
+import UpgradeImage from './UpgradeImage';
 import PropTypes from 'prop-types';
 
 function correctEndString(string, amount) {

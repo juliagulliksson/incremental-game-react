@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import InputField from './InputField';
+import InputField from './elements/InputField';
 
 export default class SubmitName extends Component {
 

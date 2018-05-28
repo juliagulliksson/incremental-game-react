@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Counter from './Counter';
+import Game from './Game';
 import SubmitForm from './SubmitForm';
 
 export default class Content extends Component {
@@ -8,7 +8,7 @@ export default class Content extends Component {
       <div className="App">
         <SubmitForm />
         <main>
-          <Counter />
+          <Game />
         </main>
       </div>
     );
