@@ -12,11 +12,11 @@ export default class Game extends Component {
 
   state = {
     counter: 0,
-    treeCost: 10,
-    farmerCost: 15,
-    factoryCost: 15,
-    GMOCost: 15,
-    spaceFactoryCost: 10,
+    treeCost: 50,
+    farmerCost: 100,
+    factoryCost: 200,
+    GMOCost: 400,
+    spaceFactoryCost: 1000,
     amountOfTrees: 0,
     amountOfDoubleClickers: 0,
     amountOfFarmers: 0,
@@ -61,7 +61,7 @@ export default class Game extends Component {
   buyAvocadoTree = () => {
     this.setState({
       counter: this.state.counter - this.state.treeCost,
-      treeCost: Math.floor(this.state.treeCost * 1.5),
+      treeCost: Math.floor(this.state.treeCost * 1.2),
       amountOfTrees: this.state.amountOfTrees + 1
     });
   }
@@ -115,7 +115,7 @@ export default class Game extends Component {
                         Amount = { this.state.amountOfTrees}
                         Counter = { this.state.counter}
                         Type = "avocado tree"
-                        Description = "An avocado tree, producing 1 avocado per 10 seconds"
+                        Description = "An avocado tree producing 1 avocado per 10 seconds"
                         Image = { TreeImage }
                         ProductionAmount = { this.state.amountOfTrees / 10 } />
             </UpgradeCountainer>

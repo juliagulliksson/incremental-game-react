@@ -1,6 +1,16 @@
+.username {
+  text-align: right;
+  padding: 10px;
+}
+
+.user{
+  color: red;
+}
+
 .avocado-image-wrapper img{
   width: 100%;
   cursor: pointer;
+  position: absolute;
 }
 
 .avocado-image-wrapper img.active {

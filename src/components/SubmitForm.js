@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import InputField from './elements/InputField';
+import Username from './elements/Username';
 
 export default class SubmitName extends Component {
 
@@ -20,8 +21,8 @@ export default class SubmitName extends Component {
   render(){
     return ( 
       <div className="input-field">
-        { this.state.writeUsername && <InputField handleSubmit={this.handleSubmit}/> }
-        <p>{ this.state.username }</p>
+        { this.state.writeUsername && <InputField handleSubmit = { this.handleSubmit }/> }
+        { !this.state.writeUsername && <Username username = { this.state.username }/> }
       </div>
     )
   }

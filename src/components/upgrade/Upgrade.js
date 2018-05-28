@@ -22,11 +22,13 @@ function Upgrade({  Amount, Cost, handleClick, Counter, Type,
   let type = correctEndString(Type, Amount);
   return (
     <div className="upgrade">
-      <p>{ Description }</p>
+     
       <UpgradeImage Source={ Image } Alt="Tree"/>
+      
       <Button className={ (Counter >= Cost) ? 'upgradeable': 'non-upgradeable' } 
               handleClick={ handleClick }>Buy {Type}</Button>
       <p>Cost: { Cost }</p>
+      <p>{ Description }</p>
       <p>You own { Amount } { type }, 
       producing { ProductionAmount } avocados per second</p>
     </div>
