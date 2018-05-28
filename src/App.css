@@ -35,3 +35,7 @@ main {
   width: 70%;
   margin: 0px auto;
 }
+
+.upgrade{
+  border: 1px solid black;
+}

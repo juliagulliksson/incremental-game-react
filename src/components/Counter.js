@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import Avocado from './Avocado';
-import AvocadoTree from './upgrades/Tree';
-import AvocadoFarmer from './upgrades/Farmer';
-import AvocadoFactory from './upgrades/Factory';
-import GMOFactory from './upgrades/GMOFactory';
-import SpaceFactory from './upgrades/SpaceFactory';
+import Upgrade from './upgrades/Upgrade';
+import UpgradeCountainer from './UpgradeCountainer';
+import SpaceImage from './../images/space_factory.jpg';
+import GMOImage from './../images/GMOFactory.jpg';
+import FactoryImage from './../images/factory.png';
+import FarmerImage from './../images/farmer.png';
+import TreeImage from './../images/avocadotree.png';
 
 export default class Counter extends Component {
 
   state = {
     counter: 0,
-    treeUpgrade: false,
-    doubleClickerUpgrade: false,
-    farmerUpgrade: false,
-    factoryUpgrade: false,
-    GMOUpgrade: false,
-    spaceFactoryUpgrade: false,
     treeCost: 10,
     farmerCost: 15,
     factoryCost: 15,
@@ -30,10 +26,7 @@ export default class Counter extends Component {
   } 
 
   componentDidMount() {
-    setInterval(() => {
-      this.incrementCounter();
-      this.checkUpgradeAvailability();
-    }, 100);
+    setInterval(this.incrementCounter, 100);
   }
 
   /* handleClick = () => {
@@ -43,48 +36,6 @@ export default class Counter extends Component {
     })
   } */
 
-  isAvailable = (upgradeCost) => {
-    return this.state.counter >= upgradeCost;
-  }
-
-  checkUpgradeAvailability = () => {
-
- 
-     (this.isAvailable(this.state.doubleClickerCost)) ? 
-      this.setState({ doubleClickerUpgrade: true })
-    : this.setState({ doubleClickerUpgrade: false })
-     
-
-    /*  if(this.state.counter >= this.state.doubleClickerCost){
-      this.setState({ doubleClickerUpgrade: true });
-    } else {
-      this.setState({ doubleClickerUpgrade: false });
-    }  */
-
-    if(this.state.counter >= this.state.treeCost){
-      this.setState({ treeUpgrade: true });
-    } else {
-      this.setState({ treeUpgrade: false });
-    } 
-
-    if(this.state.counter >= this.state.farmerCost){
-      this.setState({ farmerUpgrade: true });
-    } else {
-      this.setState({ farmerUpgrade: false });
-    }
-
-    if(this.state.counter >= this.state.factoryCost){
-      this.setState({ factoryUpgrade: true });
-    } else {
-      this.setState({ factoryUpgrade: false});
-    }
-
-    if(this.state.counter >= this.state.GMOCost){
-      this.setState({ GMOUpgrade: true });
-    } else {
-      this.setState({ GMOUpgrade: false });
-    } 
-  }
 
   incrementCounter = () => {
     //Set counter to the amount of upgrades bought, to increment accordingly
@@ -105,10 +56,6 @@ export default class Counter extends Component {
 
   handleClick = () => {
     this.setState({ counter: this.state.counter + 1 });
-  }
- 
-  checkCounter = () => {
-    console.log(this.state.treeUpgrade, this.state.doubleClickerUpgrade)
   }
 
   buyAvocadoTree = () => {
@@ -161,31 +108,62 @@ export default class Counter extends Component {
                     counter={this.state.counter} />
           
           <div className="col-8">
-          
-            <AvocadoTree  Class = { this.state.treeUpgrade } 
-                          Cost = { this.state.treeCost } 
-                          handleClick = { this.buyAvocadoTree }
-                          Amount = { this.state.amountOfTrees} />
 
-            <AvocadoFarmer  Cost = { this.state.farmerCost }
-                            handleClick = { this.buyAvocadoFarmer }
-                            Class = { this.state.farmerUpgrade }
-                            Amount = { this.state.amountOfFarmers } />
+            <UpgradeCountainer>
+              <Upgrade  Cost = { this.state.treeCost } 
+                        handleClick = { this.buyAvocadoTree }
+                        Amount = { this.state.amountOfTrees}
+                        Counter = { this.state.counter}
+                        Type = "avocado trees"
+                        Description = "A tree producing 1 avocado per 10 seconds"
+                        Image = { TreeImage }
+                        ProduceAmount = { this.state.amountOfTrees / 10 } />
+            </UpgradeCountainer>
 
-            <AvocadoFactory Cost = { this.state.factoryCost }
-                            handleClick = {this.buyAvocadoFactory}
-                            Class = { this.state.factoryUpgrade }
-                            Amount = { this.state.amountOfFactories } />
+            <UpgradeCountainer>
+              <Upgrade  Cost = { this.state.farmerCost }
+                        handleClick = { this.buyAvocadoFarmer }
+                        Amount = { this.state.amountOfFarmers }
+                        Counter = { this.state.counter}
+                        Type = "farmers"
+                        Description = "A farmer that plants trees for you, producing 1 avocado per second"
+                        Image = { FarmerImage }
+                        ProduceAmount = { this.state.amountOfFarmers } />
+            </UpgradeCountainer>
 
-            <GMOFactory Cost = { this.state.GMOCost }
+            <UpgradeCountainer>
+              <Upgrade  Cost = { this.state.factoryCost }
+                        handleClick = {this.buyAvocadoFactory}
+                        Amount = { this.state.amountOfFactories }
+                        Counter = { this.state.counter } 
+                        Type = "factory"
+                        Description = "A factory that produces 8 avocados per second"
+                        Image = {FactoryImage}
+                        ProduceAmount = { this.state.amountOfFactories * 8 } />
+            </UpgradeCountainer>
+
+            <UpgradeCountainer>
+              <Upgrade  Cost = { this.state.GMOCost }
                         handleClick = {this.buyGMOfactory}
-                        Class = { this.state.GMOUpgrade }
-                        Amount = { this.state.amountOfGMOFactories } />
+                        Amount = { this.state.amountOfGMOFactories }
+                        Counter = { this.state.counter } 
+                        Type = "GMO factory"
+                        Description = "A GMO factory that produces 16 avocados per second"
+                        Image = {GMOImage}
+                        ProduceAmount = { this.state.amountOfGMOFactories * 16 } />
+            </UpgradeCountainer>
 
-            <SpaceFactory Cost = { this.state.spaceFactoryCost }
-                          handleClick = { this.buySpaceFactory }
-                          Class = { this.state.spaceFactoryUpgrade }
-                          Amount = { this.state.amountOfSpaceFactories } />
+            <UpgradeCountainer>
+              <Upgrade  Cost = { this.state.spaceFactoryCost }
+                        handleClick = { this.buySpaceFactory }
+                        Amount = { this.state.amountOfSpaceFactories }
+                        Counter = { this.state.counter }
+                        Type = "space factory"
+                        Description = "Let aliens grow your avocados! 32 avocados per second"
+                        Image = {SpaceImage}
+                        ProduceAmount = { this.state.amountOfSpaceFactories * 32 } />
+            </UpgradeCountainer>
+          
           </div>
         </div>
       </div>

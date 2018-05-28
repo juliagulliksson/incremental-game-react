@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AvocadoImage from './../images/avocado.png';
 
-
 export default class Avocado extends Component {
 
   state = {
