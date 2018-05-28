@@ -3,26 +3,32 @@ import Button from './../Button';
 import UpgradeImage from './../UpgradeImage';
 import PropTypes from 'prop-types';
 
-function Upgrade({ Amount, Cost, handleClick, Counter, Type, Description, Image, ProduceAmount }){
- 
-  let correctEndString;
-  if(Type.endsWith("y")){
-    correctEndString = (Amount > 1 || Amount === 0) ? 'ies' :  '';
-    Type = Type + correctEndString;
-  } else if (Type.endsWith("s")) {
-    correctEndString = (Amount > 1 || Amount === 0) ? 's' :  '';
-    Type  = Type + correctEndString;
+function correctEndString(string, amount) {
+  let correctEnding;
+  if(string.endsWith("y")){
+    correctEnding = (amount > 1 || amount === 0) ? 'ies' :  'y';
+    string = string.substring(0, string.length - 1) + correctEnding; 
+    return string;
+  } else if (string.endsWith("e") || string.endsWith("er")) {
+    correctEnding = (amount > 1 || amount === 0) ? 's' :  '';
+    string = string + correctEnding;
+    return string;
   }
+}
 
+function Upgrade({  Amount, Cost, handleClick, Counter, Type, 
+                    Description, Image, ProductionAmount }){
+
+  let type = correctEndString(Type, Amount);
   return (
     <div className="upgrade">
       <p>{ Description }</p>
       <UpgradeImage Source={ Image } Alt="Tree"/>
       <Button className={ (Counter >= Cost) ? 'upgradeable': 'non-upgradeable' } 
-              handleClick={ handleClick }>Buy avocado tree</Button>
+              handleClick={ handleClick }>Buy {Type}</Button>
       <p>Cost: { Cost }</p>
-      <p>You own { Amount } { Type }, 
-      producing { ProduceAmount } avocados per second</p>
+      <p>You own { Amount } { type }, 
+      producing { ProductionAmount } avocados per second</p>
     </div>
   )
 }

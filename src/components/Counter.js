@@ -114,10 +114,10 @@ export default class Counter extends Component {
                         handleClick = { this.buyAvocadoTree }
                         Amount = { this.state.amountOfTrees}
                         Counter = { this.state.counter}
-                        Type = "avocado trees"
-                        Description = "A tree producing 1 avocado per 10 seconds"
+                        Type = "avocado tree"
+                        Description = "An avocado tree, producing 1 avocado per 10 seconds"
                         Image = { TreeImage }
-                        ProduceAmount = { this.state.amountOfTrees / 10 } />
+                        ProductionAmount = { this.state.amountOfTrees / 10 } />
             </UpgradeCountainer>
 
             <UpgradeCountainer>
@@ -125,10 +125,10 @@ export default class Counter extends Component {
                         handleClick = { this.buyAvocadoFarmer }
                         Amount = { this.state.amountOfFarmers }
                         Counter = { this.state.counter}
-                        Type = "farmers"
+                        Type = "avocado farmer"
                         Description = "A farmer that plants trees for you, producing 1 avocado per second"
                         Image = { FarmerImage }
-                        ProduceAmount = { this.state.amountOfFarmers } />
+                        ProductionAmount = { this.state.amountOfFarmers } />
             </UpgradeCountainer>
 
             <UpgradeCountainer>
@@ -136,10 +136,10 @@ export default class Counter extends Component {
                         handleClick = {this.buyAvocadoFactory}
                         Amount = { this.state.amountOfFactories }
                         Counter = { this.state.counter } 
-                        Type = "factory"
+                        Type = "avocado factory"
                         Description = "A factory that produces 8 avocados per second"
                         Image = {FactoryImage}
-                        ProduceAmount = { this.state.amountOfFactories * 8 } />
+                        ProductionAmount = { this.state.amountOfFactories * 8 } />
             </UpgradeCountainer>
 
             <UpgradeCountainer>
@@ -150,7 +150,7 @@ export default class Counter extends Component {
                         Type = "GMO factory"
                         Description = "A GMO factory that produces 16 avocados per second"
                         Image = {GMOImage}
-                        ProduceAmount = { this.state.amountOfGMOFactories * 16 } />
+                        ProductionAmount = { this.state.amountOfGMOFactories * 16 } />
             </UpgradeCountainer>
 
             <UpgradeCountainer>
@@ -159,9 +159,9 @@ export default class Counter extends Component {
                         Amount = { this.state.amountOfSpaceFactories }
                         Counter = { this.state.counter }
                         Type = "space factory"
-                        Description = "Let aliens grow your avocados! 32 avocados per second"
+                        Description = "Let aliens produce your avocados! 32 avocados per second"
                         Image = {SpaceImage}
-                        ProduceAmount = { this.state.amountOfSpaceFactories * 32 } />
+                        ProductionAmount = { this.state.amountOfSpaceFactories * 32 } />
             </UpgradeCountainer>
           
           </div>
