@@ -19,7 +19,8 @@ function correctEndString(string, amount) {
 function Upgrade({  Amount, Cost, handleClick, Counter, Type, 
                     Description, Image, ProductionAmount }){
 
-  let type = correctEndString(Type, Amount);
+  let upgradeType = correctEndString(Type, Amount);
+  
   return (
     <div className="upgrade">
      
@@ -29,8 +30,10 @@ function Upgrade({  Amount, Cost, handleClick, Counter, Type,
               handleClick={ handleClick }>Buy {Type}</Button>
       <p>Cost: { Cost }</p>
       <p>{ Description }</p>
-      <p>You own { Amount } { type }, 
-      producing { ProductionAmount } avocados per second</p>
+      <p>{ Amount } { upgradeType },
+      {(Type === "avocado farmer") ? " planting " : " producing "} 
+      { ProductionAmount }
+      {(Type === "avocado farmer") ? " trees " : " avocados "} per second</p>
     </div>
   )
 }

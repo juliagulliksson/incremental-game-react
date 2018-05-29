@@ -7,16 +7,20 @@
   color: red;
 }
 
+.avocado-image-wrapper{
+  position: relative;
+}
+
 .avocado-image-wrapper img{
+  transform: rotate(-18deg);
   width: 100%;
   cursor: pointer;
+  transition: all 300ms;
   position: absolute;
 }
 
 .avocado-image-wrapper img.active {
   width: 98%;
-  margin:0px auto;
-  display: block;
 }
 
 .counter{

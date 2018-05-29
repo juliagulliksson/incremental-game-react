@@ -14,9 +14,9 @@ export default class Avocado extends Component {
   render(){
     return (
       <div className="col-4 avocado-image-wrapper">
-        <img  src={AvocadoImage} alt="Avocado"
-              className={this.state.active ? 'active': null}  
-              onClick={ this.props.handleClick } 
+        <img  src={ AvocadoImage } alt="Avocado"
+              className = { this.state.active ? 'active': '' }  
+              onClick = { this.props.handleClick } 
               onMouseDown={ () => this.toggleClass(true) } 
               onMouseUp={() => this.toggleClass(false)} />
         <div className="counter">

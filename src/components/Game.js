@@ -27,15 +27,8 @@ export default class Game extends Component {
 
   componentDidMount() {
     setInterval(this.incrementCounter, 100);
+    setInterval(this.incrementTrees, 5000);
   }
-
-  /* handleClick = () => {
-    this.setState(previousState => {
-      return { click: previousState.click }
-
-    })
-  } */
-
 
   incrementCounter = () => {
     //Set counter to the amount of upgrades bought, to increment accordingly
@@ -43,8 +36,8 @@ export default class Game extends Component {
       counter: this.state.counter +
       // The counter will be added to every ten seconds
       (1 * this.state.amountOfTrees * (100/10000))
-      // The counter will update every second, to render 1 avocado/second
-      + (1 * this.state.amountOfFarmers * (100/1000))
+      // The counter will be added to every second, to render 1 avocado/second
+      //+ (1 * this.state.amountOfFarmers * (100/1000))
       // 8 avocados per second
       + (1 * this.state.amountOfFactories * (100/125))
       //16 avocados per second
@@ -52,6 +45,12 @@ export default class Game extends Component {
       //32 avocados per second
       + (1 * this.state.amountOfSpaceFactories * (100/31.25))
     });
+  }
+
+  incrementTrees = () => {
+    this.setState({
+      amountOfTrees: this.state.amountOfTrees + this.state.amountOfFarmers
+    })
   }
 
   handleClick = () => {
@@ -69,7 +68,7 @@ export default class Game extends Component {
   buyAvocadoFarmer = () => {
     this.setState({
       counter: this.state.counter - this.state.farmerCost,
-      farmerCost: Math.floor(this.state.farmerCost * 1.5),
+      farmerCost: Math.floor(this.state.farmerCost * 1.3),
       amountOfFarmers: this.state.amountOfFarmers + 1
     });
   }
@@ -77,7 +76,7 @@ export default class Game extends Component {
   buyAvocadoFactory = () => {
     this.setState({
       counter: this.state.counter - this.state.factoryCost,
-      factoryCost: Math.floor(this.state.factoryCost * 1.5),
+      factoryCost: Math.floor(this.state.factoryCost * 1.4),
       amountOfFactories: this.state.amountOfFactories + 1
     });
   }
@@ -93,7 +92,7 @@ export default class Game extends Component {
   buySpaceFactory = () => {
     this.setState({
       counter: this.state.counter - this.state.spaceFactoryCost,
-      spaceFactoryCost: Math.floor(this.state.spaceFactoryCost * 1.5),
+      spaceFactoryCost: Math.floor(this.state.spaceFactoryCost * 1.6),
       amountOfSpaceFactories: this.state.amountOfSpaceFactories + 1
     });
   }
@@ -104,8 +103,8 @@ export default class Game extends Component {
       <div className="container">
         <div className="row">
           
-          <Avocado  handleClick={ this.handleClick } 
-                    counter={this.state.counter} />
+          <Avocado  handleClick = { this.handleClick } 
+                    counter = { this.state.counter } />
           
           <div className="col-8">
 
@@ -126,9 +125,9 @@ export default class Game extends Component {
                         Amount = { this.state.amountOfFarmers }
                         Counter = { this.state.counter}
                         Type = "avocado farmer"
-                        Description = "A farmer that plants trees for you, producing 1 avocado per second"
+                        Description = "A farmer that plants a tree for you every 5 seconds"
                         Image = { FarmerImage }
-                        ProductionAmount = { this.state.amountOfFarmers } />
+                        ProductionAmount = { this.state.amountOfFarmers / 5 } />
             </UpgradeCountainer>
 
             <UpgradeCountainer>
@@ -138,7 +137,7 @@ export default class Game extends Component {
                         Counter = { this.state.counter } 
                         Type = "avocado factory"
                         Description = "A factory that produces 8 avocados per second"
-                        Image = {FactoryImage}
+                        Image = { FactoryImage }
                         ProductionAmount = { this.state.amountOfFactories * 8 } />
             </UpgradeCountainer>
 
@@ -149,7 +148,7 @@ export default class Game extends Component {
                         Counter = { this.state.counter } 
                         Type = "GMO factory"
                         Description = "A GMO factory that produces 16 avocados per second"
-                        Image = {GMOImage}
+                        Image = { GMOImage }
                         ProductionAmount = { this.state.amountOfGMOFactories * 16 } />
             </UpgradeCountainer>
 
@@ -160,7 +159,7 @@ export default class Game extends Component {
                         Counter = { this.state.counter }
                         Type = "space factory"
                         Description = "Let aliens produce your avocados! 32 avocados per second"
-                        Image = {SpaceImage}
+                        Image = { SpaceImage }
                         ProductionAmount = { this.state.amountOfSpaceFactories * 32 } />
             </UpgradeCountainer>
           
