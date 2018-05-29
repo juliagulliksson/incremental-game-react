@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './../elements/Button';
 import UpgradeImage from './UpgradeImage';
 import PropTypes from 'prop-types';
+import UpgradeCountainer from './UpgradeCountainer';
 
 function correctEndString(string, amount) {
   let correctEnding;
@@ -22,19 +23,25 @@ function Upgrade({  Amount, Cost, handleClick, Counter, Type,
   let upgradeType = correctEndString(Type, Amount);
   
   return (
-    <div className="upgrade">
-     
-      <UpgradeImage Source={ Image } Alt="Tree"/>
-      
-      <Button className={ (Counter >= Cost) ? 'upgradeable': 'non-upgradeable' } 
-              handleClick={ handleClick }>Buy {Type}</Button>
-      <p>Cost: { Cost }</p>
-      <p>{ Description }</p>
-      <p>{ Amount } { upgradeType },
-      {(Type === "avocado farmer") ? " planting " : " producing "} 
-      { ProductionAmount }
-      {(Type === "avocado farmer") ? " trees " : " avocados "} per second</p>
-    </div>
+    <UpgradeCountainer>
+      <div className="container">
+        <div className="row">
+          <div className="col-6">
+            <UpgradeImage Source={ Image } Alt={ Type }/>
+            <Button className={ (Counter >= Cost) ? 'upgradeable': 'non-upgradeable' } 
+                    handleClick={ handleClick }>Buy {Type}</Button>
+            <p>Cost: { Cost }</p>
+          </div>
+          <div className="col-6">
+            <p>{ Description }</p>
+            <p>{ Amount } { upgradeType },
+            {(Type === "avocado farmer") ? " planting " : " producing "} 
+            { ProductionAmount }
+            {(Type === "avocado farmer") ? " trees " : " avocados "} per second</p>
+          </div>
+        </div>
+      </div>
+    </UpgradeCountainer>
   )
 }
 
