@@ -20,9 +20,13 @@ export default class SubmitName extends Component {
 
   render(){
     return ( 
-      <div className="input-field">
-        { this.state.writeUsername && <InputField handleSubmit = { this.handleSubmit }/> }
-        { !this.state.writeUsername && <Username username = { this.state.username }/> }
+      <div className="username-input">
+        <div className="input-field">
+          { this.state.writeUsername && <InputField handleSubmit = { this.handleSubmit }/> }
+        </div>
+        <div className="username">
+          { !this.state.writeUsername && <Username username = { this.state.username }/> }
+        </div>
       </div>
     )
   }

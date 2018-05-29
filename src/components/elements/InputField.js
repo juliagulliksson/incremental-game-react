@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default function InputField({ handleSubmit, value, placeholder }) {
+export default function InputField({ handleSubmit, placeholder }) {
 
   return (
     <input  type = "text" 
             placeholder = { placeholder } 
-            onKeyDown = { handleSubmit }
-            value = { value } />
+            onKeyDown = { handleSubmit } />
   )
 }

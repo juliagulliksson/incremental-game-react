@@ -7,20 +7,22 @@
   color: red;
 }
 
+
 .avocado-image-wrapper img{
+  transform: rotate(-18deg);
   width: 100%;
   cursor: pointer;
-  position: absolute;
+  transition: all 300ms;
 }
 
 .avocado-image-wrapper img.active {
   width: 98%;
-  margin:0px auto;
-  display: block;
+  margin-bottom: 6px;
 }
 
 .counter{
   text-align: center;
+  border: 1px solid black;
 }
 
 .upgradeable{
