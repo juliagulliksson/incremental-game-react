@@ -1,3 +1,15 @@
+body {
+  font-family: 'Dosis', sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+main{
+  background-color: rgba(130, 197, 130, 0.466);
+}
+
 .username {
   text-align: right;
   padding: 10px;
@@ -6,7 +18,6 @@
 .user{
   color: red;
 }
-
 
 .avocado-image-wrapper img{
   transform: rotate(-18deg);
@@ -17,12 +28,15 @@
 
 .avocado-image-wrapper img.active {
   width: 98%;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .counter{
   text-align: center;
-  border: 1px solid black;
+  font-size: 1.7em;
+  color: rgb(2, 71, 2);
+  font-weight: 700;
+  margin-top: -8px;
 }
 
 .upgradeable{
@@ -30,24 +44,63 @@
   opacity: 1;
 }
 
+.upgradeable:hover{
+  background-color: rgba(231, 231, 231, 0.712);
+}
+
 .non-upgradeable{
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.7;
+}
+
+.upgrade-icon{
+  height: 127px;
+  border: 1px solid black;
+  overflow: hidden;
 }
 
 .upgrade-icon img{
   width: 100%;
-}
-
-.upgrade-icon{
-  width: 150px;
-}
-
-main {
-  width: 70%;
-  margin: 0px auto;
+  object-fit: cover;
 }
 
 .upgrade{
-  border: 1px solid black;
+  background-color: #FFF;
+  padding: 0;
+  margin: 10px;
+}
+
+.upgrade-description{
+  padding: 10px;
+}
+
+.cost{
+  float: left;
+  margin: 1px 3px 0px 0px;
+  font-size: 1.1em;
+}
+
+.cost-wrapper::after{
+  display: block;
+  content: '';
+  clear: both;
+}
+.cost-icon{
+  width: 22px;
+  height: 22px;
+  float: left;
+}
+
+.cost-icon img{
+  width: 100%;
+}
+
+.green{
+  color: rgb(4, 139, 4);
+  font-weight: 700;
+}
+
+.red{
+  color: rgb(194, 11, 11);
+  font-weight: 700;
 }

@@ -13,7 +13,7 @@ export default class Avocado extends Component {
 
   render(){
     return (
-      <div className="col-4">
+      <div className="col-4 avocado-wrapper col-md-offset-4">
         <div className="avocado-image-wrapper">
           <img  src={ AvocadoImage } alt="Avocado"
                 className = { this.state.active ? 'active': '' }  
@@ -25,6 +25,7 @@ export default class Avocado extends Component {
           <p>{ parseInt(this.props.counter, 10) } </p>
         </div>
       </div>
+      
     )
   }
 }
