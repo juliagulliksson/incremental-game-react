@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import InputField from './elements/InputField';
 import Username from './elements/Username';
 
-export default class SubmitName extends Component {
+export default class SubmitForm extends Component {
 
   state = {
     username: "",
