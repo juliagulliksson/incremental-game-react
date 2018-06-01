@@ -5,6 +5,7 @@ export default function InputField({ handleSubmit, placeholder }) {
   return (
     <input  type = "text" 
             placeholder = { placeholder } 
-            onKeyDown = { handleSubmit } />
+            onKeyDown = { handleSubmit }
+            className = "form-control" />
   )
 }

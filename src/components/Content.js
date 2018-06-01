@@ -4,11 +4,11 @@ import SubmitForm from './SubmitForm';
 
 export default function Content(){
   return (
-    <div className="App">
+    <React.Fragment>
       <SubmitForm />
       <main>
         <Game />
       </main>
-    </div>
+    </React.Fragment>
   );
 }

@@ -13,7 +13,7 @@ export default class SubmitForm extends Component {
     if(e.keyCode === 13){
       this.setState({
         username: e.target.value,
-        writeUsername: false
+        writeUsername: !this.state.writeUsername
       })
     }
   }
@@ -21,12 +21,13 @@ export default class SubmitForm extends Component {
   render(){
     return ( 
       <div className="username-input">
-        <div className="input-field">
-          { this.state.writeUsername && <InputField handleSubmit = { this.handleSubmit }/> }
-        </div>
-        <div className="username">
+        <div className="input-field form-group">
+          <p>Welcome to <span className="title">Avocado Clicker</span>,</p>
+          { this.state.writeUsername && <InputField handleSubmit = { this.handleSubmit }
+          placeholder="write your username..."/> }
           { !this.state.writeUsername && <Username username = { this.state.username }/> }
         </div>
+        <div className="clear"></div>
       </div>
     )
   }
