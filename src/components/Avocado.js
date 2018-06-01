@@ -8,7 +8,7 @@ export default class Avocado extends Component {
   }
 
   toggleClass = (bool) => {
-    this.setState({active: bool})
+    this.setState({active: bool});
   }
 
   render(){
@@ -27,7 +27,6 @@ export default class Avocado extends Component {
           </div>
         </div>
       </div>
-      
-    )
+    );
   }
 }

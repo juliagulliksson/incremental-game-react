@@ -11,7 +11,7 @@ main{
 }
 
 .username-input{
-  background-color: rgba(2, 100, 2, 0.877);
+  background-color: rgba(4, 121, 4, 0.877);
   text-align: center;
 }
 
@@ -34,6 +34,7 @@ input.form-control{
   float: left;
   margin-top: 3px;
   font-size: 0.65em;
+  border: 0;
 }
 
 .clear{

@@ -9,6 +9,6 @@ export default function Content(){
       <main>
         <Game />
       </main>
-      </React.Fragment>
+    </React.Fragment>
   );
 }

@@ -137,7 +137,6 @@ export default class Game extends Component {
                         Description = "A GMO factory that produces 16 avocados per second"
                         Image = { GMOImage }
                         ProductionAmount = { this.state.amountOfGMOFactories * 16 } />
-          
 
               <Upgrade  Cost = { this.state.spaceFactoryCost }
                         handleClick = { this.buySpaceFactory }
