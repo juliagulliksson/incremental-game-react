@@ -12,12 +12,11 @@ export default class Game extends Component {
   state = {
     counter: 0,
     treeCost: 50,
-    farmerCost: 100,
-    factoryCost: 200,
-    GMOCost: 400,
-    spaceFactoryCost: 1000,
+    farmerCost: 150,
+    factoryCost: 350,
+    GMOCost: 500,
+    spaceFactoryCost: 1500,
     amountOfTrees: 0,
-    amountOfDoubleClickers: 0,
     amountOfFarmers: 0,
     amountOfFactories: 0,
     amountOfGMOFactories: 0,
@@ -65,7 +64,7 @@ export default class Game extends Component {
   buyAvocadoFarmer = () => {
     this.setState({
       counter: this.state.counter - this.state.farmerCost,
-      farmerCost: Math.floor(this.state.farmerCost * 1.3),
+      farmerCost: Math.floor(this.state.farmerCost * 1.35),
       amountOfFarmers: this.state.amountOfFarmers + 1
     });
   }
@@ -73,7 +72,7 @@ export default class Game extends Component {
   buyAvocadoFactory = () => {
     this.setState({
       counter: this.state.counter - this.state.factoryCost,
-      factoryCost: Math.floor(this.state.factoryCost * 1.4),
+      factoryCost: Math.floor(this.state.factoryCost * 1.5),
       amountOfFactories: this.state.amountOfFactories + 1
     });
   }
@@ -81,7 +80,7 @@ export default class Game extends Component {
   buyGMOfactory = () => {
     this.setState({
       counter: this.state.counter - this.state.GMOCost,
-      GMOCost: Math.floor(this.state.GMOCost * 1.5),
+      GMOCost: Math.floor(this.state.GMOCost * 1.7),
       amountOfGMOFactories: this.state.amountOfGMOFactories + 1
     });
   }
@@ -89,7 +88,7 @@ export default class Game extends Component {
   buySpaceFactory = () => {
     this.setState({
       counter: this.state.counter - this.state.spaceFactoryCost,
-      spaceFactoryCost: Math.floor(this.state.spaceFactoryCost * 1.6),
+      spaceFactoryCost: Math.floor(this.state.spaceFactoryCost * 2),
       amountOfSpaceFactories: this.state.amountOfSpaceFactories + 1
     });
   }
@@ -97,12 +96,11 @@ export default class Game extends Component {
   render(){
     return(
       <React.Fragment>
-
         <div className="container wrapper">
           <div className="row">
-          <Avocado  handleClick = { this.handleClick } 
-            counter = { this.state.counter } />
-            <div className="col-7">
+            <Avocado  handleClick = { this.handleClick } 
+                      counter = { this.state.counter } />
+            <div className="col-md-7 col-sm-12">
            
               <Upgrade  Cost = { this.state.treeCost } 
                         handleClick = { this.buyAvocadoTree }
@@ -150,9 +148,9 @@ export default class Game extends Component {
                         Image = { SpaceImage }
                         ProductionAmount = { this.state.amountOfSpaceFactories * 32 } />
             </div>
-            </div>
           </div>
-        </React.Fragment>
+        </div>
+      </React.Fragment>
       
     )
   }

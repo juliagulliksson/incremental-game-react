@@ -10,14 +10,61 @@ main{
   background-color: rgba(130, 197, 130, 0.466);
 }
 
+.username-input{
+  background-color: rgba(2, 100, 2, 0.877);
+  text-align: center;
+}
+
+.username-input p{
+  float: left;
+  margin-top: 4px;
+  margin-right: 7px;
+}
+
+.input-field{
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 1.8em;
+  color:rgb(185, 248, 185);
+}
+
+input.form-control{
+  font-family: 'Shadows Into Light Two', cursive;
+  width: 40%;
+  background-color: rgb(240, 238, 238);
+  float: left;
+  margin-top: 3px;
+  font-size: 0.65em;
+}
+
+.clear{
+  clear: both;
+}
+
+.form-group{
+  margin: 0px auto;
+  text-align: center;
+  padding: 14px;
+  width: 40%;
+}
+
 .username {
   text-align: right;
   padding: 10px;
 }
 
 .user{
-  color: red;
+  color: rgb(185, 248, 185);
+  margin: 4px 0px 0px 4px;
+  font-weight: 700;
+  float: left;
 }
+
+.avocado-wrapper-outer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 .avocado-image-wrapper img{
   transform: rotate(-18deg);
@@ -42,6 +89,8 @@ main{
 .upgradeable{
   cursor: pointer;
   opacity: 1;
+  transition: all 400ms;
+  margin: 0;
 }
 
 .upgradeable:hover{
@@ -50,24 +99,27 @@ main{
 
 .non-upgradeable{
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.8;
+  transition: all 1000ms;
+  margin: 0;
 }
 
 .upgrade-icon{
   height: 127px;
-  border: 1px solid black;
   overflow: hidden;
+  padding: 0;
 }
 
 .upgrade-icon img{
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .upgrade{
   background-color: #FFF;
   padding: 0;
   margin: 10px;
+  border-radius: 3px;
 }
 
 .upgrade-description{
@@ -85,6 +137,7 @@ main{
   content: '';
   clear: both;
 }
+
 .cost-icon{
   width: 22px;
   height: 22px;
@@ -103,4 +156,10 @@ main{
 .red{
   color: rgb(194, 11, 11);
   font-weight: 700;
+}
+
+@media screen and (max-width: 700px){
+  input.form-control{
+    width: 100%;
+  }
 }

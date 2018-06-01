@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from './../elements/Button';
 import UpgradeImage from './UpgradeImage';
 import PropTypes from 'prop-types';
 import UpgradeCountainer from './UpgradeCountainer';
 import AvocadoIcon from './../../images/avo-icon.png';
 
 function correctEndString(string, amount) {
+  //Corrects the string ending to plural or singular
   let correctEnding;
   if(string.endsWith("y")){
     correctEnding = (amount > 1 || amount === 0) ? 'ies' :  'y';
@@ -27,11 +27,8 @@ function Upgrade({  Amount, Cost, handleClick, Counter, Type,
     <UpgradeCountainer >
       <div className={(Counter >= Cost) ? 'upgradeable row': 'non-upgradeable row'} 
       onClick={handleClick}>
-        <div className="col-5">
+        <div className="col-5 upgrade-icon">
             <UpgradeImage Source={ Image } Alt={ Type }/>
-            {/* <Button className={ (Counter >= Cost) ? 'upgradeable': 'non-upgradeable' } 
-                    handleClick={ handleClick }>Buy {Type}</Button> */}
-            
         </div>
         <div className="col-7 upgrade-description">
           <p>{ Description }</p>
@@ -45,7 +42,7 @@ function Upgrade({  Amount, Cost, handleClick, Counter, Type,
               <div className="cost-icon">
                 <img src={AvocadoIcon} alt="avocado icon" />
               </div>
-            </div>
+          </div>
         </div>
       </div>
     </UpgradeCountainer>
